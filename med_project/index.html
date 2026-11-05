@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">هندسة الغد المستدام | SDG 9</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Helvetica / Inter / Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgDark: '#0F0E0E',     /* 60% Main Background */
+                        cardDark: '#161316',   /* 30% Card Surface */
+                        accentRed: '#FE2E4B',  /* 10% Accent Red */
+                        borderGray: '#4B4A4B', /* Borders and Muted Elements */
+                        pureWhite: '#FFFFFF'
+                    },
+                    fontFamily: {
+                        arabic: ['Tajawal', 'sans-serif'],
+                        english: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0F0E0E;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        [dir="ltr"] body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Dynamic Background Glow Orbs */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            opacity: 0.18;
+            animation: floatOrb 12s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: 10%; right: 5%; width: 500px; height: 500px; background-color: #FE2E4B; }
+        .orb-2 { bottom: 15%E; left: -10%; width: 600px; height: 600px; background-color: #4B4A4B; opacity: 0.3; animation-delay: 4s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -60px) scale(1.12); }
+            100% { transform: translate(-40px, 40px) scale(0.95); }
+        }
+        /* Glass / Card Styling with new Palette */
+        .custom-card {
+            background-color: #161316;
+            border: 1px solid #4B4A4B;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .custom-card:hover {
+            border-color: #FE2E4B;
+            box-shadow: 0 0 35px rgba(254, 46, 75, 0.25);
+            transform: translateY(-6px);
+        }
+        input[type=range] {
+            accent-color: #FE2E4B;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-accentRed selection:text-pureWhite">
+
+    <!-- Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="relative z-50 container mx-auto px-6 py-6 flex justify-between items-center border-b border-borderGray/40">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-accentRed flex items-center justify-center text-bgDark font-black text-2xl shadow-lg shadow-accentRed/30">
+                <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <span class="text-xl font-black tracking-wide text-pureWhite" data-i18n="nav_title">هندسة الغد المستدام</span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <button onclick="toggleLanguage()" id="lang-btn" class="px-5 py-2.5 rounded-xl bg-cardDark hover:bg-accentRed hover:text-bgDark transition-all border border-borderGray text-sm font-bold flex items-center gap-2 shadow-md">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-text">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative z-10 container mx-auto px-6 pt-20 pb-16 text-center max-w-5xl">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-accentRed/10 border border-accentRed/30 text-accentRed text-sm font-bold mb-6 animate-pulse">
+            <i class="fa-solid fa-bolt-lightning"></i> <span data-i18n="badge_text">خارطة الطريق الاستراتيجية • الهدف التاسع (SDG 9)</span>
+        </div>
+        <h1 class="text-4xl md:text-7xl font-black tracking-tight mb-6 leading-tight text-pureWhite" data-i18n="hero_title">
+            إعادة هندسة البنية التحتية والابتكار لعالمنا القادم
+        </h1>
+        <p class="text-lg md:text-xl text-borderGray mb-12 max-w-3xl mx-auto leading-relaxed" data-i18n="hero_desc">
+            منظومة رقمية هندسية متكاملة تعالج جذور التفاوت في البنية التحتية، الانبعاثات الصناعية، وفجوة التمويل العالمي برؤية تقنية فائقة.
+        </p>
+
+        <!-- Quick Stats Bar -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="custom-card p-6 rounded-2xl text-center">
+                <div class="text-accentRed text-3xl font-black mb-1">2.6B</div>
+                <div class="text-sm text-borderGray" data-i18n="stat1">شخص بدون إنترنت موثوق</div>
+            </div>
+            <div class="custom-card p-6 rounded-2xl text-center">
+                <div class="text-accentRed text-3xl font-black mb-1">50%</div>
+                <div class="text-sm text-borderGray" data-i18n="stat2">خفض مستهدف للانبعاثات</div>
+            </div>
+            <div class="custom-card p-6 rounded-2xl text-center">
+                <div class="text-accentRed text-3xl font-black mb-1">$1.2T</div>
+                <div class="text-sm text-borderGray" data-i18n="stat3">فجوة التمويل الصناعي السنوي</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Transformation Simulator -->
+    <section class="relative z-10 container mx-auto px-6 py-12 max-w-6xl">
+        <div class="custom-card p-8 md:p-12 rounded-3xl shadow-2xl border border-borderGray">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-4xl font-black text-pureWhite mb-3" data-i18n="sim_title">محاكي التأثير الاستراتيجي الفوري</h2>
+                <p class="text-borderGray text-sm md:text-base" data-i18n="sim_sub">حرّك المؤشرات لاستشعار النتائج المباشرة للسياسات الهندسية المستدامة:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Slider 1 -->
+                <div class="bg-bgDark/80 p-6 rounded-2xl border border-borderGray">
+                    <label class="block text-sm font-bold mb-3 text-pureWhite" data-i18n="slider1_label">الاستثمار في البنية التحتية المرنة</label>
+                    <input type="range" id="infraSlider" min="10" max="100" value="65" class="w-full h-2.5 bg-borderGray/40 rounded-lg appearance-none cursor-pointer mb-4" oninput="updateSimulation()">
+                    <div class="flex justify-between text-xs text-accentRed font-black">
+                        <span data-i18n="min_val">منخفض</span>
+                        <span id="infraVal" class="text-lg text-pureWhite">65%</span>
+                        <span data-i18n="max_val">أقصى تأثير</span>
+                    </div>
+                </div>
+                <!-- Slider 2 -->
+                <div class="bg-bgDark/80 p-6 rounded-2xl border border-borderGray">
+                    <label class="block text-sm font-bold mb-3 text-pureWhite" data-i18n="slider2_label">التحول للتصنيع الأخضر النظيف</label>
+                    <input type="range" id="factorySlider" min="10" max="100" value="75" class="w-full h-2.5 bg-borderGray/40 rounded-lg appearance-none cursor-pointer mb-4" oninput="updateSimulation()">
+                    <div class="flex justify-between text-xs text-accentRed font-black">
+                        <span data-i18n="min_val">منخفض</span>
+                        <span id="factoryVal" class="text-lg text-pureWhite">75%</span>
+                        <span data-i18n="max_val">أقصى تأثير</span>
+                    </div>
+                </div>
+                <!-- Slider 3 -->
+                <div class="bg-bgDark/80 p-6 rounded-2xl border border-borderGray">
+                    <label class="block text-sm font-bold mb-3 text-pureWhite" data-i18n="slider3_label">دعم تمويل الشركات الناشئة وR&D</label>
+                    <input type="range" id="startupSlider" min="10" max="100" value="80" class="w-full h-2.5 bg-borderGray/40 rounded-lg appearance-none cursor-pointer mb-4" oninput="updateSimulation()">
+                    <div class="flex justify-between text-xs text-accentRed font-black">
+                        <span data-i18n="min_val">منخفض</span>
+                        <span id="startupVal" class="text-lg text-pureWhite">80%</span>
+                        <span data-i18n="max_val">أقصى تأثير</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Output Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-6 rounded-2xl bg-accentRed/10 border border-accentRed/40">
+                    <div class="text-xs font-semibold text-borderGray mb-2" data-i18n="metric1_title">خفض الانبعاثات الكربونية الصناعية</div>
+                    <div id="m1" class="text-4xl font-black text-accentRed">72%</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-accentRed/10 border border-accentRed/40">
+                    <div class="text-xs font-semibold text-borderGray mb-2" data-i18n="metric2_title">مؤشر كفاءة وصمود البنية التحتية</div>
+                    <div id="m2" class="text-4xl font-black text-accentRed">88%</div>
+                </div>
+                <div class="p-6 rounded-2xl bg-accentRed/10 border border-accentRed/40">
+                    <div class="text-xs font-semibold text-borderGray mb-2" data-i18n="metric3_title">فرص العمل التكنولوجية المستحدثة</div>
+                    <div id="m3" class="text-4xl font-black text-accentRed">18.4 ألف</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expanded & Clear Solutions Hub -->
+    <section class="relative z-10 container mx-auto px-6 py-16 max-w-6xl">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-black text-pureWhite mb-4" data-i18n="solutions_heading">استراتيجيات الحلول الهندسية المتقدمة</h2>
+            <p class="text-borderGray max-w-2xl mx-auto text-lg" data-i18n="solutions_sub">انقر على أي استراتيجية أدناه لاستعراض خطة التنفيذ التفصيلية، الأهداف الهندسية، والمؤشرات الاستراتيجية.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Solution 1 -->
+            <div onclick="openSolutionModal(1)" class="custom-card p-8 rounded-3xl cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 rounded-2xl bg-accentRed/20 flex items-center justify-center text-accentRed text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bridge-water"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-pureWhite" data-i18n="sol1_title">البنية التحتية الذكية والمقاومة للمناخ</h3>
+                    <p class="text-borderGray text-sm leading-relaxed mb-6" data-i18n="sol1_desc">استخدام الخرسانة الذكية ذاتية الإصلاح وشبكات الطاقة الشمسية المصغرة لبناء طرق ومرافق لا تتأثر بالكوارث الطبيعية.</p>
+                </div>
+                <div class="flex items-center text-accentRed font-bold text-sm gap-2 pt-4 border-t border-borderGray/40">
+                    <span data-i18n="explore_btn">استعراض الخطة التفصيلية</span>
+                    <i class="fa-solid fa-arrow-left-long group-hover:-translate-x-1 transition-transform rtl:rotate-180"></i>
+                </div>
+            </div>
+
+            <!-- Solution 2 -->
+            <div onclick="openSolutionModal(2)" class="custom-card p-8 rounded-3xl cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 rounded-2xl bg-accentRed/20 flex items-center justify-center text-accentRed text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-pureWhite" data-i18n="sol2_title">التصنيع الأخضر والاقتصاد الدائري</h3>
+                    <p class="text-borderGray text-sm leading-relaxed mb-6" data-i18n="sol2_desc">إعادة هندسة خطوط الإنتاج بالمصانع لتعتمد 100% على الهيدروجين الأخضر وتقنيات التقاط الكربون وتدوير المخلفات.</p>
+                </div>
+                <div class="flex items-center text-accentRed font-bold text-sm gap-2 pt-4 border-t border-borderGray/40">
+                    <span data-i18n="explore_btn">استعراض الخطة التفصيلية</span>
+                    <i class="fa-solid fa-arrow-left-long group-hover:-translate-x-1 transition-transform rtl:rotate-180"></i>
+                </div>
+            </div>
+
+            <!-- Solution 3 -->
+            <div onclick="openSolutionModal(3)" class="custom-card p-8 rounded-3xl cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 rounded-2xl bg-accentRed/20 flex items-center justify-center text-accentRed text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-pureWhite" data-i18n="sol3_title">تمويل الابتكار ودعم الشركات الناشئة</h3>
+                    <p class="text-borderGray text-sm leading-relaxed mb-6" data-i18n="sol3_desc">إنشاء منصات إقراض رقمية مدعومة بالذكاء الاصطناعي لتسهيل وصول الشركات الصغيرة ورُوّاد الأعمال لرأس المال الجريء.</p>
+                </div>
+                <div class="flex items-center text-accentRed font-bold text-sm gap-2 pt-4 border-t border-borderGray/40">
+                    <span data-i18n="explore_btn">استعراض الخطة التفصيلية</span>
+                    <i class="fa-solid fa-arrow-left-long group-hover:-translate-x-1 transition-transform rtl:rotate-180"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Modal for Deep Solution View -->
+    <div id="solution-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="custom-card max-w-3xl w-full p-8 md:p-10 rounded-3xl border border-accentRed relative shadow-2xl">
+            <button onclick="closeSolutionModal()" class="absolute top-6 left-6 text-borderGray hover:text-pureWhite text-2xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-accentRed/20 flex items-center justify-center text-accentRed text-2xl">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl md:text-3xl font-black text-pureWhite"></h3>
+            </div>
+            <p id="modal-desc" class="text-borderGray text-base md:text-lg mb-8 leading-relaxed"></p>
+            
+            <div class="bg-bgDark p-6 rounded-2xl border border-borderGray mb-8">
+                <h4 class="text-accentRed font-bold mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line"></i> <span data-i18n="modal_metrics_title">المؤشرات المستهدفة ومراحل التنفيذ:</span>
+                </h4>
+                <p id="modal-metrics" class="text-pureWhite text-sm md:text-base leading-relaxed"></p>
+            </div>
+
+            <button onclick="closeSolutionModal()" class="w-full py-4 rounded-xl bg-accentRed text-bgDark font-black text-base hover:opacity-90 transition-opacity shadow-lg shadow-accentRed/20" data-i18n="modal_close">
+                إغلاق النافذة الاستراتيجية
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 container mx-auto px-6 py-12 text-center border-t border-borderGray/40 text-borderGray text-sm">
+        <p data-i18n="footer_text">هندسة الغد المستدام © 2026 • مبنية برؤية هندسية واعدة لخدمة الهدف التاسع (SDG 9).</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity, Simulation & Localization -->
+    <script>
+        let currentLang = 'ar';
+
+        const translations = {
+            ar: {
+                page_title: "هندسة الغد المستدام | SDG 9",
+                nav_title: "هندسة الغد المستدام",
+                badge_text: "خارطة الطريق الاستراتيجية • الهدف التاسع (SDG 9)",
+                hero_title: "إعادة هندسة البنية التحتية والابتكار لعالمنا القادم",
+                hero_desc: "منظومة رقمية هندسية متكاملة تعالج جذور التفاوت في البنية التحتية، الانبعاثات الصناعية، وفجوة التمويل العالمي برؤية تقنية فائقة.",
+                stat1: "شخص بدون إنترنت موثوق",
+                stat2: "خفض مستهدف للانبعاثات",
+                stat3: "فجوة التمويل الصناعي السنوي",
+                sim_title: "محاكي التأثير الاستراتيجي الفوري",
+                sim_sub: "حرّك المؤشرات لاستشعار النتائج المباشرة للسياسات الهندسية المستدامة:",
+                slider1_label: "الاستثمار في البنية التحتية المرنة",
+                slider2_label: "التحول للتصنيع الأخضر النظيف",
+                slider3_label: "دعم تمويل الشركات الناشئة وR&D",
+                min_val: "منخفض",
+                max_val: "أقصى تأثير",
+                metric1_title: "خفض الانبعاثات الكربونية الصناعية",
+                metric2_title: "مؤشر كفاءة وصمود البنية التحتية",
+                metric3_title: "فرص العمل التكنولوجية المستحدثة",
+                solutions_heading: "استراتيجيات الحلول الهندسية المتقدمة",
+                solutions_sub: "انقر على أي استراتيجية أدناه لاستعراض خطة التنفيذ التفصيلية، الأهداف الهندسية، والمؤشرات الاستراتيجية.",
+                sol1_title: "البنية التحتية الذكية والمقاومة للمناخ",
+                sol1_desc: "استخدام الخرسانة الذكية ذاتية الإصلاح وشبكات الطاقة الشمسية المصغرة لبناء طرق ومرافق لا تتأثر بالكوارث الطبيعية.",
+                sol2_title: "التصنيع الأخضر والاقتصاد الدائري",
+                sol2_desc: "إعادة هندسة خطوط الإنتاج بالمصانع لتعتمد 100% على الهيدروجين الأخضر وتقنيات التقاط الكربون وتدوير المخلفات.",
+                sol3_title: "تمويل الابتكار ودعم الشركات الناشئة",
+                sol3_desc: "إنشاء منصات إقراض رقمية مدعومة بالذكاء الاصطناعي لتسهيل وصول الشركات الصغيرة ورُوّاد الأعمال لرأس المال الجريء.",
+                explore_btn: "استعراض الخطة التفصيلية",
+                modal_metrics_title: "المؤشرات المستهدفة ومراحل التنفيذ:",
+                modal_close: "إغلاق النافذة الاستراتيجية",
+                footer_text: "هندسة الغد المستدام © 2026 • مبنية برؤية هندسية واعدة لخدمة الهدف التاسع (SDG 9)."
+            },
+            en: {
+                page_title: "Sustainable Tomorrow Engineering | SDG 9",
+                nav_title: "Sustainable Tomorrow",
+                badge_text: "Strategic Roadmap • SDG 9",
+                hero_title: "Re-engineering Infrastructure & Innovation for Our Next World",
+                hero_desc: "An integrated engineering digital ecosystem addressing infrastructure inequality, industrial emissions, and the global funding gap with advanced tech vision.",
+                stat1: "People lacking reliable internet",
+                stat2: "Target emission reduction",
+                stat3: "Annual industrial funding gap",
+                sim_title: "Real-time Strategic Impact Simulator",
+                sim_sub: "Adjust the sliders to instantly sense the direct results of sustainable engineering policies:",
+                slider1_label: "Resilient Infrastructure Investment",
+                slider2_label: "Green & Clean Manufacturing Transition",
+                slider3_label: "Startup Financing & R&D Support",
+                min_val: "Low",
+                max_val: "Max Impact",
+                metric1_title: "Industrial Carbon Emission Reduction",
+                metric2_title: "Infrastructure Resilience & Efficiency Index",
+                metric3_title: "New Tech Jobs Created",
+                solutions_heading: "Advanced Engineering Solution Strategies",
+                solutions_sub: "Click any strategy below to review the detailed execution plan, engineering goals, and strategic indicators.",
+                sol1_title: "Smart & Climate-Proof Infrastructure",
+                sol1_desc: "Utilizing self-healing smart concrete and micro-solar grids to build roads and facilities resilient to natural disasters.",
+                sol2_title: "Green Manufacturing & Circular Economy",
+                sol2_desc: "Re-engineering factory production lines to rely 100% on green hydrogen, carbon capture tech, and waste recycling.",
+                sol3_title: "Innovation Financing & Startup Support",
+                sol3_desc: "Establishing AI-driven digital lending platforms to facilitate small business and entrepreneur access to venture capital.",
+                explore_btn: "Explore Detailed Plan",
+                modal_metrics_title: "Targeted Metrics & Implementation Phases:",
+                modal_close: "Close Strategic Window",
+                footer_text: "Sustainable Tomorrow Engineering © 2026 • Built with a promising engineering vision for SDG 9."
+            }
+        };
+
+        const modalData = {
+            ar: {
+                1: {
+                    title: "البنية التحتية الذكية والمقاومة للمناخ",
+                    desc: "برنامج هندسي متكامل لتحديث شبكات النقل والمياه والاتصالات بالاعتماد على خرسانة ذكية ذاتية الإصلاح ومستشعرات إنترنت الأشياء (IoT) لرصد سلامة الجسور والطرق لحظياً ضد الفيضانات والحرارة.",
+                    metrics: "• خفض تكاليف الصيانة الدورية بنسبة 60%.\n• ربط أكثر من 150 منطقة ريفية بشبكات الاتصالات والنقل الرقمي فائقة السرعة.\n• رفع معامل الصمود ضد الكوارث المناخية إلى أكثر من 90%."
+                },
+                2: {
+                    title: "التصنيع الأخضر والاقتصاد الدائري",
+                    desc: "استراتيجية صناعية لتحويل المصانع التقليدية إلى وحدات إنتاج نظيفة تعتمد على الطاقة المتجددة بنسبة كاملة، مع تطبيق أنظمة闭ة closed-loop لإعادة تدوير 95% من مياه المصانع والمخلفات الصلبة.",
+                    metrics: "• خفض انبعاثات غازات الدفيئة الصناعية بنسبة تتجاوز 55% بحلول 2030.\n• تصفير النفايات الصناعية الخطرة في المناطق المستهدفة.\n• زيادة كفاءة استهلاك الطاقة بنسبة 40%."
+                },
+                3: {
+                    title: "تمويل الابتكار ودعم الشركات الناشئة",
+                    desc: "بناء منصة تمويل رقمية تعتمد على تقنيات الذكاء الاصطناعي وتقييم الجدارة الائتمانية الدقيقة، لتمكين رواد الأعمال في الدول النامية من الحصول على قروض ميسرة ورأس مال مغامر لتسريع ابتكاراتهم.",
+                    metrics: "• إتاحة التمويل لأكثر من 12,000 شركة ناشئة في مجالات التكنولوجيا الخضراء.\n• تقليص مدة الموافقة على القروض الاستثمارية من أشهر إلى أيام معدودة.\n• استحداث آلاف فرص العمل الماهرة للشباب في قطاع التكنولوجيا."
+                }
+            },
+            en: {
+                1: {
+                    title: "Smart & Climate-Proof Infrastructure",
+                    desc: "An integrated engineering program to upgrade transport, water, and telecom networks using self-healing smart concrete and IoT sensors to monitor bridge and road safety in real-time against floods and heat.",
+                    metrics: "• Reduction of routine maintenance costs by 60%.\n• Connecting over 150 rural regions to high-speed digital telecom and transport networks.\n• Raising climate disaster resilience index to over 90%."
+                },
+                2: {
+                    title: "Green Manufacturing & Circular Economy",
+                    desc: "An industrial strategy to convert traditional factories into clean production units relying fully on renewable energy, implementing closed-loop systems to recycle 95% of factory water and solid waste.",
+                    metrics: "• Cutting industrial greenhouse gas emissions by over 55% by 2030.\n• Achieving zero hazardous industrial waste in target zones.\n• Increasing energy efficiency by 40%."
+                },
+                3: {
+                    title: "Innovation Financing & Startup Support",
+                    desc: "Building a digital funding platform powered by AI and precise credit scoring to empower entrepreneurs in developing nations with accessible loans and venture capital to accelerate innovations.",
+                    metrics: "• Providing funding to over 12,000 green-tech startups.\n• Reducing investment loan approval time from months to days.\n• Creating thousands of skilled tech jobs for youth."
+                }
+            }
+        };
+
+        function updateSimulation() {
+            const infra = parseInt(document.getElementById('infraSlider').value);
+            const factory = parseInt(document.getElementById('factorySlider').value);
+            const startup = parseInt(document.getElementById('startupSlider').value);
+
+            document.getElementById('infraVal').innerText = infra + '%';
+            document.getElementById('factoryVal').innerText = factory + '%';
+            document.getElementById('startupVal').innerText = startup + '%';
+
+            // Calculate dynamic metrics
+            const carbonRed = Math.round((factory * 0.65) + (infra * 0.2));
+            const resilience = Math.round((infra * 0.7) + (startup * 0.25));
+            const jobs = ((startup * 140 + infra * 60) / 1000).toFixed(1) + (currentLang === 'ar' ? ' ألف' : 'k');
+
+            document.getElementById('m1').innerText = carbonRed + '%';
+            document.getElementById('m2').innerText = resilience + '%';
+            document.getElementById('m3').innerText = jobs;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const root = document.getElementById('html-root');
+            const langText = document.getElementById('lang-text');
+            
+            if (currentLang === 'en') {
+                root.setAttribute('dir', 'ltr');
+                root.setAttribute('lang', 'en');
+                langText.innerText = 'العربية';
+            } else {
+                root.setAttribute('dir', 'rtl');
+                root.setAttribute('lang', 'ar');
+                langText.innerText = 'English';
+            }
+
+            // Update all text elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+            updateSimulation();
+        }
+
+        function openSolutionModal(id) {
+            const modal = document.getElementById('solution-modal');
+            const titleEl = document.getElementById('modal-title');
+            const descEl = document.getElementById('modal-desc');
+            const metricsEl = document.getElementById('modal-metrics');
+
+            titleEl.innerText = modalData[currentLang][id].title;
+            descEl.innerText = modalData[currentLang][id].desc;
+            metricsEl.innerHTML = modalData[currentLang][id].metrics.replace(/\n/g, '<br>');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSolutionModal() {
+            const modal = document.getElementById('solution-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Initialize simulation values on load
+        updateSimulation();
+    </script>
+</body>
+</html>
